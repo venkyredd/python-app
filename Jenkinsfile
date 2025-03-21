@@ -4,7 +4,7 @@ pipeline {
     environment {
         EC2_USER = 'ubuntu'
         EC2_HOST = '43.204.97.161'
-        SSH_CREDENTIAL_ID = 'squ_fc14bfde402649115340f9a8105bcb161db453e9'  // Use stored Jenkins SSH credentials
+        SSH_CREDENTIAL_ID = 'fa7b8283-1216-4a7e-8b09-3bcc2366ace5'  // Use stored Jenkins SSH credentials
     }
 
     stages {
