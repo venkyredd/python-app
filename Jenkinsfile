@@ -4,7 +4,7 @@ pipeline {
     environment {
         EC2_USER = 'ubuntu'
         EC2_HOST = '43.204.97.161'
-        SSH_KEY = 'VENSNR01.pem'  // Make sure this matches Jenkins credentials
+        SSH_CREDENTIAL_ID = 'squ_fc14bfde402649115340f9a8105bcb161db453e9'  // Use stored Jenkins SSH credentials
     }
 
     stages {
@@ -29,7 +29,7 @@ pipeline {
 
         stage('Deploy to EC2') {
             steps {
-                sshagent(['VENSNR01.pem']) {
+                sshagent([SSH_CREDENTIAL_ID]) {
                     sh """
                     ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << EOF
                     # Ensure the project directory exists
@@ -38,7 +38,7 @@ pipeline {
                     
                     # Clone repo if not already present
                     if [ ! -d .git ]; then
-                        git clone your-repo-url .
+                        git clone https://github.com/venkyredd/python-app .
                     else
                         git pull origin main
                     fi
